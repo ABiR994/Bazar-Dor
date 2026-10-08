@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme inline {
+  --font-sans: var(--font-hind-siliguri), ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
