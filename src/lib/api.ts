@@ -7,11 +7,11 @@ const FALLBACK =
   process.env.NEXT_PUBLIC_API_BASE_URL_FALLBACK ??
   "https://api.abcz.workers.dev/api/bazardor";
 
-async function request<T>(path: string): Promise<T> {
+async function request(path: string): Promise<unknown> {
   for (const base of [PRIMARY, FALLBACK]) {
     try {
-      const res = await fetch(`${base}${path}`, { cache: "no-store" });
-      if (res.ok) return (await res.json()) as T;
+      const res = await fetch(`${base}${path}`, { next: { revalidate: 300 } });
+      if (res.ok) return await res.json();
     } catch {
       continue;
     }
@@ -19,12 +19,27 @@ async function request<T>(path: string): Promise<T> {
   throw new Error(`Failed to fetch ${path}`);
 }
 
-export const getProducts = (category?: string) =>
-  request<Product[]>(
-    category ? `/products?category=${encodeURIComponent(category)}` : "/products",
+function toList<T>(json: unknown): T[] {
+  if (Array.isArray(json)) return json as T[];
+  if (json && typeof json === "object") {
+    const list = Object.values(json).find(Array.isArray);
+    if (list) return list as T[];
+  }
+  return [];
+}
+
+export const getProducts = async (category?: string) =>
+  toList<Product>(
+    await request(
+      category ? `/products?category=${encodeURIComponent(category)}` : "/products",
+    ),
   );
-export const getProduct = (id: string | number) =>
-  request<Product>(`/products/${id}`);
-export const getCategories = () => request<Category[]>("/categories");
-export const getCategory = (slug: string) =>
-  request<Category>(`/categories/${slug}`);
+
+export const getProduct = async (id: string | number) =>
+  (await request(`/products/${id}`)) as Product;
+
+export const getCategories = async () =>
+  toList<Category>(await request("/categories"));
+
+export const getCategory = async (slug: string) =>
+  (await request(`/categories/${slug}`)) as Category;

@@ -1,9 +1,45 @@
-export type Product = {
-  id: number | string;
-  [key: string]: unknown;
+export type Category = {
+  id: string;
+  slug: string;
+  nameBn: string;
+  icon: string;
 };
 
-export type Category = {
+export type Market = {
+  market: string;
+  division: string;
+  min: number;
+  max: number;
+};
+
+export type Product = {
+  id: number;
   slug: string;
-  [key: string]: unknown;
+  nameBn: string;
+  category: string;
+  categoryNameBn: string;
+  categoryIcon: string;
+  unit: string;
+  image: string;
+  today: number;
+  yesterday: number;
+  lastWeek: number;
+  lastMonth: number;
+  change: { dir: "up" | "down" | "flat"; pct: number };
+  markets: Market[];
+};
+
+export type TickerItem = {
+  id: number;
+  emoji: string;
+  name: string;
+  price: number;
+  unit: string;
+  change: number;
+};
+
+export type NavCategory = {
+  slug: string;
+  label: string;
+  icon: string;
 };
