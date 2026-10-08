@@ -9,7 +9,7 @@ export default function MarketTable({ markets }: { markets: Market[] }) {
       </h2>
       <div className="mt-3 overflow-x-auto rounded-xl border border-gray-200">
         <table className="w-full min-w-136 text-sm">
-          <thead className="bg-gray-50 text-left text-xs text-gray-500">
+          <thead className="border-b border-gray-200 text-left text-xs text-gray-500">
             <tr>
               <th className="px-4 py-3 font-medium">বাজার</th>
               <th className="px-4 py-3 font-medium">বিভাগ</th>
@@ -22,7 +22,7 @@ export default function MarketTable({ markets }: { markets: Market[] }) {
             {markets.map((m) => (
               <tr
                 key={`${m.division}-${m.market}`}
-                className="border-t border-gray-200"
+                className="border-t border-gray-200 first:border-t-0 hover:bg-gray-50"
               >
                 <td className="px-4 py-3 font-medium text-gray-900">
                   {m.market}

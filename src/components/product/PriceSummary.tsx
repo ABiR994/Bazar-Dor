@@ -21,7 +21,7 @@ export default function PriceSummary({ markets }: { markets: Market[] }) {
     {
       label: "গড় দাম",
       value: average,
-      color: "text-gray-900",
+      color: "text-brand",
       note: `${toBengaliNumber(markets.length)}টি বাজারের গড়`,
     },
   ];

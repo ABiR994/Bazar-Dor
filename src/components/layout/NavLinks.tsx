@@ -22,7 +22,7 @@ export default function NavLinks({ items }: { items: NavCategory[] }) {
                 aria-current={active ? "page" : undefined}
                 className={`flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm whitespace-nowrap transition-colors ${
                   active
-                    ? "bg-brand-soft font-semibold text-brand-dark"
+                    ? "bg-brand font-semibold text-white"
                     : "text-gray-600 hover:bg-gray-100"
                 }`}
               >

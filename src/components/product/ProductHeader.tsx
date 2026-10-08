@@ -30,7 +30,7 @@ export default function ProductHeader({ product }: { product: Product }) {
       <div className="flex min-w-0 items-start gap-4">
         <span
           aria-hidden
-          className="grid size-14 shrink-0 place-items-center rounded-2xl bg-gray-100 text-3xl"
+          className="grid size-14 shrink-0 place-items-center rounded-full bg-gray-100 text-3xl"
         >
           {product.image || product.categoryIcon}
         </span>
@@ -38,16 +38,16 @@ export default function ProductHeader({ product }: { product: Product }) {
           <h1 className="text-2xl font-bold text-gray-900 sm:text-3xl">
             {product.nameBn}
           </h1>
-          <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-gray-600">
-            <span>প্রতি {unit}</span>
+          <p className="mt-1 text-sm text-gray-600">
+            প্রতি {unit} ·{" "}
             <Link
               href={`/category/${product.category}`}
-              className="rounded-full bg-brand-soft px-3 py-0.5 text-xs font-semibold text-brand-dark hover:bg-green-200"
+              className="font-medium text-brand hover:underline"
             >
-              {product.categoryIcon} {product.categoryNameBn}
+              {product.categoryNameBn}
             </Link>
-          </div>
-          <p className="mt-3 text-sm text-gray-600">
+          </p>
+          <p className="mt-2 text-sm text-gray-600">
             <ChangeSentence product={product} />
           </p>
         </div>
