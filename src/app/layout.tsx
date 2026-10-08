@@ -25,7 +25,7 @@ export default function RootLayout({
       <body className={`${hindSiliguri.variable} font-sans antialiased`}>
         <Navbar />
         <PriceTicker />
-        <main className="mx-auto min-h-screen w-full max-w-6xl px-4">
+        <main className="mx-auto min-h-screen w-full max-w-6xl px-4 pb-12">
           {children}
         </main>
         <Footer />

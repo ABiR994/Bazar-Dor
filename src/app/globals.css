@@ -13,6 +13,16 @@ html {
   --color-brand: #15803d;
   --color-brand-dark: #166534;
   --color-brand-soft: #dcfce7;
+  --color-page: #f0f5f0;
+}
+
+:root {
+  --root-bg: var(--color-page);
+}
+
+:root,
+body {
+  background-color: var(--color-page);
 }
 
 .no-scrollbar {
