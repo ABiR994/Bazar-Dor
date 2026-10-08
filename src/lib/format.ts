@@ -28,3 +28,21 @@ const UNITS: Record<string, string> = {
 export function toBanglaUnit(unit: string): string {
   return UNITS[unit.toLowerCase()] ?? unit;
 }
+
+export function formatTaka(value: number): string {
+  const decimals = Number.isInteger(value) ? 0 : 2;
+  return `${bnDigits(
+    value.toLocaleString("en-US", {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: 2,
+    }),
+  )} টাকা`;
+}
+
+export function toBengaliPrice(value: number): string {
+  const text = value.toLocaleString("en-US", {
+    minimumFractionDigits: Number.isInteger(value) ? 0 : 2,
+    maximumFractionDigits: 2,
+  });
+  return bnDigits(text);
+}

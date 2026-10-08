@@ -38,6 +38,13 @@ export const getProducts = async (category?: string) =>
 export const getProduct = async (id: string | number) =>
   (await request(`/products/${id}`)) as Product;
 
+export const getProductBySlug = async (slug: string) => {
+  const products = toList<Product>(
+    await request(`/products?slug=${encodeURIComponent(slug)}`),
+  );
+  return products.find((p) => p.slug === slug) ?? null;
+};
+
 export const getCategories = async () =>
   toList<Category>(await request("/categories"));
 
