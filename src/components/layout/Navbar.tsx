@@ -24,7 +24,7 @@ export default async function Navbar() {
           </span>
           <span className="flex min-w-0 flex-col leading-tight">
             <span className="text-base font-bold sm:text-lg">বাজার দর</span>
-            <BanglaDate />
+            <BanglaDate className="block h-4 truncate text-[11px] text-gray-500 sm:text-xs" />
           </span>
         </Link>
         <AuthButtons />

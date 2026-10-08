@@ -4,7 +4,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <section id="সব-পণ্য" />
+      <section id="সব-পণ্য" className="scroll-mt-4" />
     </>
   );
 }

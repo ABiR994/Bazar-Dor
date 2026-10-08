@@ -13,7 +13,7 @@ const getDate = () =>
     timeZone: "Asia/Dhaka",
   });
 
-export default function BanglaDate() {
+export default function BanglaDate({ className = "" }: { className?: string }) {
   const date = useSyncExternalStore(subscribe, getDate, () => "");
-  return <span className="block h-4 truncate text-[11px] text-gray-500 sm:text-xs">{date}</span>;
+  return <span className={`empty:invisible ${className}`}>{date}</span>;
 }
