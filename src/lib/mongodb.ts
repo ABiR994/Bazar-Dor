@@ -1,14 +1,14 @@
 import { MongoClient } from "mongodb";
 
-const uri = process.env.MONGODB_URI;
+const url = process.env.MONGODB_URL;
 
-if (!uri) {
-  throw new Error("MONGODB_URI is not set. Add it to .env.local");
+if (!url) {
+  throw new Error("MONGODB_URL is not set. Add it to .env.local");
 }
 
 const globalForMongo = globalThis as unknown as { mongoClient?: MongoClient };
 
-const client = globalForMongo.mongoClient ?? new MongoClient(uri);
+const client = globalForMongo.mongoClient ?? new MongoClient(url);
 
 if (process.env.NODE_ENV !== "production") {
   globalForMongo.mongoClient = client;
