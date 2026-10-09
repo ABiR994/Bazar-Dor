@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
 
 export default function Avatar({
@@ -9,7 +12,9 @@ export default function Avatar({
   image?: string | null;
   size?: number;
 }) {
-  if (image) {
+  const [failed, setFailed] = useState(false);
+
+  if (image && !failed) {
     return (
       <Image
         src={image}
@@ -17,11 +22,14 @@ export default function Avatar({
         width={size}
         height={size}
         unoptimized
+        referrerPolicy="no-referrer"
+        onError={() => setFailed(true)}
         style={{ width: size, height: size }}
         className="shrink-0 rounded-full object-cover"
       />
     );
   }
+
   return (
     <span
       aria-hidden

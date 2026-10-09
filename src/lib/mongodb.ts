@@ -8,7 +8,9 @@ if (!url) {
 
 const globalForMongo = globalThis as unknown as { mongoClient?: MongoClient };
 
-const client = globalForMongo.mongoClient ?? new MongoClient(url);
+const client =
+  globalForMongo.mongoClient ??
+  new MongoClient(url, { serverSelectionTimeoutMS: 8000 });
 
 if (process.env.NODE_ENV !== "production") {
   globalForMongo.mongoClient = client;
