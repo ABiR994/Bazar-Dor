@@ -24,7 +24,6 @@ export default function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         defaultValue={defaultValue}
-        suppressHydrationWarning
         className="input w-full bg-gray-50"
       />
     </label>

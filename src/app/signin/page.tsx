@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import AuthShell from "@/components/auth/AuthShell";
+import RedirectNotice from "@/components/auth/RedirectNotice";
 import SignInForm from "@/components/auth/SignInForm";
 import SocialLogin from "@/components/auth/SocialLogin";
 import { safeRedirect } from "@/lib/redirect";
@@ -35,6 +36,7 @@ export default async function SignInPage({
         </>
       }
     >
+      {redirectTo !== "/" && <RedirectNotice />}
       <SignInForm redirectTo={redirectTo} />
       <SocialLogin redirectTo={redirectTo} />
     </AuthShell>
