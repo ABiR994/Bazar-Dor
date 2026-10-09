@@ -5,6 +5,7 @@ import MarketTable from "@/components/product/MarketTable";
 import PriceSummary from "@/components/product/PriceSummary";
 import ProductHeader from "@/components/product/ProductHeader";
 import { getProductBySlug } from "@/lib/api";
+import { requireSession } from "@/lib/session";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -16,6 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProductPage({ params }: Props) {
   const { slug } = await params;
+  await requireSession(`/product/${slug}`);
   const product = await getProductBySlug(slug).catch(() => null);
 
   if (!product) notFound();
